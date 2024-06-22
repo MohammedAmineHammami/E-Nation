@@ -1,0 +1,115 @@
+
+
+.login{
+    background-color: #1388bc;
+     height: 100vh;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+
+.loginContenair{
+    width: 800px;
+    height: 500px;
+    background-color: white;
+    border-radius: 30px;
+    display: flex;
+
+}
+
+
+.loginLeftSide{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height:500px;
+    background-image: url('https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600');
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(100%);
+    border-top-left-radius: 30px;
+    border-bottom-left-radius:30px;
+    color: white;
+    align-items: start;
+    justify-content: center;
+    gap: 10px;
+}
+
+.loginLeftSide h1{
+    font-size: 3.8rem;
+    padding-left: 20px;
+}
+
+.loginLeftSide h3{
+    padding-left: 20px;
+}
+
+.loginLeftSide p{
+    text-align: justify;
+    line-height: 25px;
+    width: 360px;
+    padding-left: 20px;
+}
+
+.loginLeftSide button{
+    margin-left: 20px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    
+}
+.loginLeftSide button:hover{
+   background-color: white;
+    
+}
+
+.loginForm{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    gap: 25px;
+}
+.loginForm h1{
+    color: #1388bc;
+}
+.loginForm input{
+    height: 35px;
+    width: 250px;
+    border: none;
+    border-bottom: 1px solid #1388bc;
+    outline-color: #1388bc;
+}
+
+.loginForm button{
+    width: 250px;
+    height: 35px;
+    background-color: #1388bc;
+    color: white;
+    border: none;
+    border-radius: 20px;
+ 
+}
+
+.loginForm button:hover{
+    background-color: #0b729e;
+}
+
+.errorMsg{
+    color: rgb(190, 5, 5);
+    margin-top: 50px;
+    
+}
+
+.loginRightSide{
+    display: flex;
+    flex-direction: column;
+}
+
+.errMsgDiv{
+    width: 400px;
+    display: flex;
+    justify-content: center;
+}
+

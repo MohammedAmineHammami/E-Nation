@@ -1,0 +1,57 @@
+.profileContenair{
+    width: calc(100vw - 750px );
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+}
+
+.coverImg{
+    width: 1024px;
+    height: 300px;
+}
+
+.profileImg{
+    width: 200px;
+    height: 200px;
+    border-radius:50%;
+    position: absolute;
+    top: 200px;
+}
+
+.userProfileInfo{
+    width: 750px;
+    height: 220px;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 70px;
+}
+
+.userSocialMedia{
+    display: flex;
+    gap: 10px;
+}
+.profileMetaData{
+    display:flex;
+    margin-bottom: 20px;
+}
+
+.userBottomSection{
+    display: flex;
+    align-items: center;
+
+}
+
+.messanger{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.msgIcons{
+    position: absolute;
+    right: 210px
+}
