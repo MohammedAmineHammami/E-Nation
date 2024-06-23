@@ -12,16 +12,17 @@ import user from "../../assets/user.png";
 import { ThemeContext } from "../../context/ThemeContextProvider";
 
 function Navbar() {
-  const { mode, setMode } = useContext(ThemeContext);
+  const { mode, toggleMode } = useContext(ThemeContext);
+  console.count(mode);
   return (
-    <div className={mode ? "navbar" : "navbarDarkMode"}>
+    <div className={mode ? "darkNavbar" : "navbar"}>
       <div className="leftSide">
         <h1 className="logo">E-Nation</h1>
         <HomeOutlinedIcon />
         {mode ? (
-          <LightModeOutlinedIcon onClick={() => setMode()} />
+          <LightModeOutlinedIcon onClick={() => toggleMode()} />
         ) : (
-          <DarkModeOutlinedIcon onClick={() => setMode()} />
+          <DarkModeOutlinedIcon onClick={() => toggleMode()} />
         )}
         <WidgetsOutlinedIcon />
         <div className="searchBar">

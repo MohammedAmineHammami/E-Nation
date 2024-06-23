@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./home.css";
 import me from "../../img/me.jpg";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -7,6 +7,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import SmsOutlinedIcon from "@mui/icons-material/SmsOutlined";
 import ShareIcon from "@mui/icons-material/Share";
 import Comments from "../../components/comments/Comments";
+import { ThemeContext } from "../../context/ThemeContextProvider";
 
 const images = [
   {
@@ -39,9 +40,10 @@ const images = [
 function Home() {
   const [like, setLike] = useState(false);
   const [comment, setComment] = useState(false);
+  const { mode } = useContext(ThemeContext);
 
   return (
-    <div className="homePage">
+    <div className={mode ? "darkHomePage" : "homePage"}>
       <div className="stories">
         {images?.map((el, i) => {
           return (
@@ -53,7 +55,7 @@ function Home() {
         })}
       </div>
 
-      <div className="post">
+      <div className={mode ? "darkPost" : "post"}>
         <div className="postHead">
           <div className="postHeadS1">
             <img src={me} alt="" className="userImg" />

@@ -20,7 +20,7 @@ import { ThemeContext } from "../../context/ThemeContextProvider";
 function LeftSide() {
   const { mode } = useContext(ThemeContext);
   return (
-    <div className={mode ? "leftSideContenair" : "leftSideContenairDarkmode"}>
+    <div className={mode ? "leftSideContenairDark" : "leftSideContenair"}>
       <div className="general">
         <div className="item">
           <img style={{ width: "35px" }} src={user} alt="" />

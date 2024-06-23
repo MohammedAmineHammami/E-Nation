@@ -12,8 +12,6 @@ import Home from "./pages/home/Home.jsx";
 import Profile from "./pages/profile/Profile.jsx";
 import Register from "./pages/register/Register.jsx";
 import Login from "./pages/login/Login.jsx";
-import { useContext } from "react";
-import { ThemeContext } from "./context/ThemeContextProvider.jsx";
 
 function App() {
   const currentUser = true;
@@ -62,9 +60,9 @@ function App() {
       element: <Register />,
     },
   ]);
-  const { mode } = useContext(ThemeContext);
+
   return (
-    <div className={mode ? "lightApp" : "darkApp"}>
+    <div>
       <RouterProvider router={browserRouter} />
     </div>
   );

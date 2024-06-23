@@ -6,8 +6,8 @@ import { ThemeContext } from "../../context/ThemeContextProvider";
 function RightSide() {
   const { mode } = useContext(ThemeContext);
   return (
-    <div className="rightSideContenair">
-      <div className={mode ? "suggestions" : "suggestionsDarkMode"}>
+    <div className={mode ? "darkRightContenair" : "rightSideContenair"}>
+      <div className={mode ? "darkSuggestions" : "suggestions"}>
         <span>Suggestions for you</span>
         <div className="suggestion">
           <div className="suggUsers">
@@ -32,7 +32,7 @@ function RightSide() {
         </div>
       </div>
 
-      <div className={mode ? "latestActivities" : "latestActivitiesDarkMode"}>
+      <div className={mode ? "darkLatestActivities" : "latestActivities"}>
         <span>Latest Activities</span>
         <div className="activityDiv">
           <div className="suggUsers">
@@ -60,7 +60,7 @@ function RightSide() {
         </div>
       </div>
 
-      <div className={mode ? "online" : "onlineDarkMode"}>
+      <div className={mode ? "darkOnline" : "online"}>
         <div className="suggUsers">
           <img className="userImg" src={me} alt="" />
           <div className="greenCircle"></div>
