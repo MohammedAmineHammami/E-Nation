@@ -5,6 +5,7 @@ import { ThemeContext } from "../../context/ThemeContextProvider";
 
 function RightSide() {
   const { mode } = useContext(ThemeContext);
+
   return (
     <div className={mode ? "darkRightContenair" : "rightSideContenair"}>
       <div className={mode ? "darkSuggestions" : "suggestions"}>

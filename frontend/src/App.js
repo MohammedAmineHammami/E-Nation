@@ -12,34 +12,40 @@ import Home from "./pages/home/Home.jsx";
 import Profile from "./pages/profile/Profile.jsx";
 import Register from "./pages/register/Register.jsx";
 import Login from "./pages/login/Login.jsx";
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContextProvider.jsx";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 function App() {
-  const currentUser = true;
+  const { signedUser } = useContext(AuthContext);
+  const queryClient = new QueryClient();
   const ProtectedRouter = ({ children }) => {
-    if (!currentUser) {
+    if (!signedUser) {
       return <Navigate to="/login" />;
     }
     return children;
   };
   const Layout = () => {
     return (
-      <>
+      <QueryClientProvider client={queryClient}>
         <Navbar />
         <div style={{ display: "flex" }}>
-          <ProtectedRouter>
-            <LeftSide />
-            <Outlet />
-            <RightSide />
-          </ProtectedRouter>
+          <LeftSide />
+          <Outlet />
+          <RightSide />
         </div>
-      </>
+      </QueryClientProvider>
     );
   };
 
   const browserRouter = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />,
+      element: (
+        <ProtectedRouter>
+          <Layout />
+        </ProtectedRouter>
+      ),
       children: [
         {
           path: "/",

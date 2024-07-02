@@ -1,14 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import "./home.css";
-import me from "../../img/me.jpg";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import SmsOutlinedIcon from "@mui/icons-material/SmsOutlined";
-import ShareIcon from "@mui/icons-material/Share";
-import Comments from "../../components/comments/Comments";
 import { ThemeContext } from "../../context/ThemeContextProvider";
-
+import Share from "../../components/share/Share";
+import Post from "../../components/post/Post";
+import { useQuery } from "react-query";
+import { axiosRequest } from "../../helper/requestHelper";
 const images = [
   {
     id: 1,
@@ -38,9 +34,13 @@ const images = [
 ];
 
 function Home() {
-  const [like, setLike] = useState(false);
-  const [comment, setComment] = useState(false);
   const { mode } = useContext(ThemeContext);
+
+  const { isLoading, error, data } = useQuery("posts", () =>
+    axiosRequest.get(`/posts/all`).then((res) => {
+      return res.data;
+    })
+  );
 
   return (
     <div className={mode ? "darkHomePage" : "homePage"}>
@@ -54,47 +54,14 @@ function Home() {
           );
         })}
       </div>
-
-      <div className={mode ? "darkPost" : "post"}>
-        <div className="postHead">
-          <div className="postHeadS1">
-            <img src={me} alt="" className="userImg" />
-            <div className="userHeadInfo">
-              <b>username</b>
-              <span style={{ fontSize: "14px" }}>a few seconds ago</span>
-            </div>
-          </div>
-          <MoreVertIcon />
-        </div>
-        <p>
-          Dopamine is a critical neurotransmitter that plays a pivotal role in
-          shaping our drive and motivation.
-        </p>
-        <img
-          className="postImg"
-          src="https://i.ytimg.com/vi/QmOF0crdyRU/maxresdefault.jpg"
-          alt=""
-        />
-        <div className="postBottomSections">
-          <div onClick={() => setLike(!like)} className="likes">
-            {like ? (
-              <FavoriteIcon style={{ color: like && "red" }} />
-            ) : (
-              <FavoriteBorderIcon />
-            )}
-            <span>Likes</span>
-          </div>
-          <div className="likes" onClick={() => setComment(!comment)}>
-            <SmsOutlinedIcon />
-            <span>Comments</span>
-          </div>
-          <div className="likes">
-            <ShareIcon />
-            <span>Share</span>
-          </div>
-        </div>
-        {comment && <Comments />}
-      </div>
+      <Share />
+      {error
+        ? "Something went wrong!Please try again..!"
+        : isLoading
+        ? "is Loading "
+        : data?.map((el, i) => {
+            return <Post post={el} mode={mode} key={i} />;
+          })}
     </div>
   );
 }

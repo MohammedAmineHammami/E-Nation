@@ -1,8 +1,31 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "./login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContextProvider";
 
 function Login() {
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [error, setError] = useState(null);
+  const [inputs, setInputs] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await login(inputs);
+      navigate("/");
+    } catch (err) {
+      setError(err.response.data);
+    }
+  };
+
   return (
     <div className="login">
       <div className="loginContenair">
@@ -19,24 +42,27 @@ function Login() {
           </Link>
         </div>
         <div className="loginRightSide">
-          <div className="loginForm">
+          <form onSubmit={(e) => handleSubmit(e)} className="loginForm">
             <h1>Login</h1>
             <input
               type="text"
               name="username"
               placeholder="username"
+              onChange={(e) => handleChange(e)}
               required
             />
             <input
               type="password"
               name="password"
               placeholder="password"
+              autoComplete="new-password"
+              onChange={(e) => handleChange(e)}
               required
             />
             <button>Login</button>
-          </div>
+          </form>
           <div className="errMsgDiv">
-            <p className="errorMsg">there is an error msg will appear here!</p>
+            <p className="errorMsg">{error ? error : null}</p>
           </div>
         </div>
       </div>

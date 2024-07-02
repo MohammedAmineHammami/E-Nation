@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import "./register.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { axiosRequest } from "../../helper/requestHelper";
 
 function Register() {
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const [inputs, setInputs] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
+  };
+
+  const handleRegister = async (e, inputs) => {
+    e.preventDefault();
+    try {
+      await axiosRequest.post("/auth/register", inputs);
+      navigate("/login");
+    } catch (err) {
+      setError(err.response.data);
+    }
+  };
   return (
     <div className="register">
       <div className="registerContenair">
@@ -13,19 +35,27 @@ function Register() {
               type="text"
               name="username"
               placeholder="username"
+              onChange={(e) => handleChange(e)}
               required
             />
-            <input type="email" name="email" placeholder="email" required />
+            <input
+              type="email"
+              name="email"
+              placeholder="email"
+              onChange={(e) => handleChange(e)}
+              required
+            />
             <input
               type="password"
               name="password"
               placeholder="password"
+              onChange={(e) => handleChange(e)}
               required
             />
-            <button>Register</button>
+            <button onClick={(e) => handleRegister(e, inputs)}>Register</button>
           </div>
           <div className="errMsgDiv">
-            <p className="errorMsg">there is an error msg will appear here!</p>
+            <p className="errorMsg">{error && error}</p>
           </div>
         </div>
         <div className="registerLeftSide">

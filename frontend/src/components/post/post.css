@@ -1,0 +1,59 @@
+.post{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    width: calc(100vw - 870px);
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px
+}
+.darkPost{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    width: calc(100vw - 870px);
+    background-color: rgb(73, 73, 73);
+    color: white;
+    border-radius: 30px;
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 
+}
+
+.postHead{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.userHeadInfo{
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.postHeadS1{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.postImg{
+    width: calc(100vw - 880px);
+    height: 500px;
+    display: cover;
+}
+
+.postBottomSections{
+    margin-top: 10px;
+    display: flex;
+    gap: 30px;
+}
+
+.likes{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
